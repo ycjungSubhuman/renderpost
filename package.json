@@ -1,5 +1,5 @@
 {
-  "name": "renderpost",
+  "name": "@intergula/renderpost",
   "version": "1.0.0",
   "description": "My personal blog post text renderer (Math, diagram, etc)",
   "main": "dist/bundle.js",
