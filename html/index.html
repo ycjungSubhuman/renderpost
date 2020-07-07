@@ -114,7 +114,7 @@ Another text comes here Lorem Impsum.
 
         `;
         
-        str+="\n\n```cpp\n#include<iostream>\n\nint main(){\n return 0;\n}\n```";
+        str+="\n\n```cpp\n#include<iostream>\n\nint main(){\n return 0; // $Hard case$ \n // \\ref{hardcase2} \n}\n```";
         renderpost.render_rp(document.getElementById('content'), str);
 }
     </script>

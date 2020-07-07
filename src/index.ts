@@ -59,9 +59,14 @@ function render(parent: HTMLElement, str: string) {
 
     inline_handlers
         .forEach(handler => {
-            const txt = parent.innerHTML;
-            parent.innerHTML = txt.replace(handler.pattern, (m, p1, offset, str) => {
-                return handler.make_span(p1).outerHTML;
+            Array.from(parent.children).forEach(dom => {
+                if(dom.getElementsByTagName('code').length !== 0) {
+                    return;
+                }
+                const txt = dom.innerHTML;
+                dom.innerHTML = txt.replace(handler.pattern, (m, p1, offset, str) => {
+                    return handler.make_span(p1).outerHTML;
+                });
             });
         });
 
