@@ -97,6 +97,19 @@ Also, this is a inline math equation $f(x) = x^2 + x + 1$. Another one: $f(x) = 
 \caption{This is a caption for scanline diagram2}
 :::
 
+::: shaderdiagram
+  <script type="x-shader/x-fragment">
+    void main() {
+      vec2 st = gl_FragCoord.xy / u_resolution.xy;
+      vec3 color = vec3(st.x, st.y, abs(sin(u_time)));
+
+      gl_FragColor = vec4(color, 1.0);
+    }
+  <\/script>
+\label{fig:shader}
+\caption{This is a caption for shader}
+:::
+
 Another text comes here Lorem Impsum.
 
         `;

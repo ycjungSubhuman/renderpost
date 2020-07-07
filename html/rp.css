@@ -58,6 +58,14 @@
     text-align: center;
 }
 
+.rp-article shaderdiagram {
+    display: block;
+    margin: auto;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
 .rp-diagram canvas {
     display: block;
     margin: auto;

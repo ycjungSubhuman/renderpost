@@ -11,7 +11,6 @@ Adds
 
 ## Plan
 
-* Add a proper styling to the library
 * Add support for ShaderToy-style inline code
 
 ## Example input

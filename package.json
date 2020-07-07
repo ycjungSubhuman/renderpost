@@ -39,6 +39,7 @@
     "katex": "^0.11.1",
     "markdown-it": "^11.0.0",
     "markdown-it-container": "^3.0.0",
-    "punycode": "^2.1.1"
+    "punycode": "^2.1.1",
+    "shader-doodle": "0.0.5"
   }
 }

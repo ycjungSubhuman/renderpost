@@ -86,3 +86,22 @@ export class P5DiagramHandler implements Handler {
         this.posts.push({id_div, code: {preload, setup, draw}});
     }
 };
+
+/* Shader-doodle diagram handler */
+export class ShaderDiagramHandler implements Handler {
+    name_token: string = 'shaderdiagram';
+    posts = [];
+
+    handle = (parent: HTMLElement, body_raw: string) => {
+        index_global += 1;
+        common_pass_block(parent, body_raw, index_global);
+
+        const doodle = document.createElement('doodle');
+        doodle.innerHTML = body_raw
+            .replace(re.tex_single('caption'), '')
+            .replace(re.tex_single('label'), '');
+        doodle.setAttribute('class', 'rp-shader');
+        parent.appendChild(doodle);
+        add_caption(parent, body_raw);
+    }
+};
