@@ -2,6 +2,7 @@ import * as mi from 'markdown-it';
 import * as mi_container from 'markdown-it-container';
 import {MathHandler, InlineMathHandler} from './math';
 import {InlineRefHandler} from './ref';
+import {ImportHandler, promise_all} from './import';
 import {ImageDiagramHandler, P5DiagramHandler, ShaderDiagramHandler} from './diagram';
 import * as hljs from 'highlight.js';
 import { P5Figure } from '@intergula/p5template';
@@ -19,6 +20,7 @@ const block_handlers = [
 const inline_handlers= [
     new InlineMathHandler(),
     new InlineRefHandler(),
+    new ImportHandler(),
 ];
 
 function render(parent: HTMLElement, str: string) {
@@ -57,6 +59,18 @@ function render(parent: HTMLElement, str: string) {
         handler.handle(dom, str_raw);
     });
 
+    const post_load = () => {
+        // Hacks for removing duplicated load
+        p5handler.posts.forEach(o => new P5Figure(document.getElementById(o.id_div), o.code));
+        const doodles = parent.getElementsByTagName("doodle");
+        Array.from(doodles).forEach(dom => {
+            const d = document.createElement('shader-doodle');
+            d.innerHTML = dom.innerHTML;
+            d.setAttribute('class', dom.getAttribute('class'));
+            dom.parentElement.replaceChild(d, dom);
+        });
+    };
+
     inline_handlers
         .forEach(handler => {
             Array.from(parent.children).forEach(dom => {
@@ -65,20 +79,17 @@ function render(parent: HTMLElement, str: string) {
                 }
                 const txt = dom.innerHTML;
                 dom.innerHTML = txt.replace(handler.pattern, (m, p1, offset, str) => {
-                    return handler.make_span(p1).outerHTML;
+                    const elem = handler.make_span(p1)
+                    if(elem) {
+                        return elem.outerHTML;
+                    }
+                    else {
+                        return '';
+                    }
                 });
             });
         });
-
-    // Hacks for removing duplicated load
-    p5handler.posts.forEach(o => new P5Figure(document.getElementById(o.id_div), o.code));
-    const doodles = parent.getElementsByTagName("doodle");
-    Array.from(doodles).forEach(dom => {
-        const d = document.createElement('shader-doodle');
-        d.innerHTML = dom.innerHTML;
-        d.setAttribute('class', dom.getAttribute('class'));
-        dom.parentElement.replaceChild(d, dom);
-    });
+    promise_all().then(post_load);
 }
 
 export {render as render_rp};

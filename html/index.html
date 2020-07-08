@@ -53,6 +53,9 @@ Also, this is a inline math equation $f(x) = x^2 + x + 1$. Another one: $f(x) = 
 \caption{A picture of a plane.}
 :::
 
+\import{https://cdnjs.cloudflare.com/ajax/libs/mathjs/7.0.2/math.min.js}
+\import{https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.1/dist/tf.min.js}
+
 ::: p5diagram
 \begin{setup}
     p.createCanvas(128, 128);
@@ -60,7 +63,11 @@ Also, this is a inline math equation $f(x) = x^2 + x + 1$. Another one: $f(x) = 
     p.frameRate(30);
     p.ud = {};
     p.ud.y = 100;
+    p.ud.A = math.matrix([[1, 2], [3, 4]]);
+    p.ud.t = tf.tensor([1, 2]);
 
+    console.log(p.ud.A);
+    console.log(p.ud.t);
 \end{setup}
 
 \begin{draw}
