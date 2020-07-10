@@ -19,6 +19,10 @@ const add_caption = (parent: HTMLElement, body_raw: string) => {
     }
 };
 
+export const reset = () => {
+    index_global = 0;
+};
+
 export class ImageDiagramHandler implements Handler {
     name_token: string = 'diagram';
 

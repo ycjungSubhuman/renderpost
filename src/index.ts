@@ -3,15 +3,16 @@ import * as mi_container from 'markdown-it-container';
 import {MathHandler, InlineMathHandler} from './math';
 import {InlineRefHandler} from './ref';
 import {ImportHandler, promise_all} from './import';
-import {ImageDiagramHandler, P5DiagramHandler, ShaderDiagramHandler} from './diagram';
+import {ImageDiagramHandler, P5DiagramHandler, ShaderDiagramHandler, reset} from './diagram';
 import * as hljs from 'highlight.js';
 import { P5Figure } from '@intergula/p5template';
 import 'shader-doodle';
 
 const p5handler = new P5DiagramHandler();
+const mathhandler = new MathHandler();
 
 const block_handlers = [
-    new MathHandler(),
+    mathhandler,
     new ImageDiagramHandler(),
     new ShaderDiagramHandler(),
     p5handler,
@@ -24,6 +25,8 @@ const inline_handlers= [
 ];
 
 function render(parent: HTMLElement, str: string) {
+    reset();
+    mathhandler.index_global = 0;
     const md = mi({
         highlight: function (str, lang) {
             if (lang && hljs.getLanguage(lang)) {
