@@ -65,6 +65,7 @@ function render(parent: HTMLElement, str: string) {
     const post_load = () => {
         // Hacks for removing duplicated load
         p5handler.posts.forEach(o => new P5Figure(document.getElementById(o.id_div), o.code));
+        p5handler.posts = [];
         const doodles = parent.getElementsByTagName("doodle");
         Array.from(doodles).forEach(dom => {
             const d = document.createElement('shader-doodle');
