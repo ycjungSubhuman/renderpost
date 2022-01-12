@@ -37,7 +37,7 @@
     "@intergula/p5template": "^1.0.4",
     "highlight.js": "^10.1.1",
     "katex": "^0.11.1",
-    "markdown-it": "^11.0.0",
+    "markdown-it": "^12.3.2",
     "markdown-it-container": "^3.0.0",
     "punycode": "^2.1.1",
     "shader-doodle": "0.0.5"
