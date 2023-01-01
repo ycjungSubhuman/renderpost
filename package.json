@@ -27,11 +27,11 @@
     "@types/markdown-it": "^10.0.1",
     "@types/markdown-it-container": "^2.0.3",
     "copy-webpack-plugin": "^6.0.3",
-    "css-loader": "^3.6.0",
-    "ts-loader": "^7.0.5",
+    "css-loader": "^6.7.3",
+    "ts-loader": "^9.4.2",
     "typescript": "^3.9.6",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "dependencies": {
     "@intergula/p5template": "^1.0.4",
